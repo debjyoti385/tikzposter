@@ -83,32 +83,32 @@ blockverticalspace=15mm, colspace=15mm, subcolspace=8mm]{tikzposter}
  }
 \note[targetoffsetx=3.2cm, targetoffsety=-10cm, angle=20, rotate=12]
 {
-Since \textbf{Reading Comprehension Test} has defined domain of search space, our QA system does not require \textbf{Document Retrieval module}. Our focus is mainly in building an efficient \textbf{Answer Processing} module.
+Since \textbf{Reading Comprehension Test} has a defined domain of search space, our QA system does not require \textbf{Document Retrieval module}. Our focus is mainly on building an efficient \textbf{Answer Processing} module.
 }
  
 \column{0.33}
  \block{INTRODUCTION}{
-  Human beings have an inherent tendency to seek information. In the world of internet useful information is free flowing. However we are more interested in getting specific answer to queries rather than just gathering relevant information.
+  Human beings have an inherent tendency to seek information. In the world of internet, useful information is free flowing. However, we are more interested in getting specific answer to queries rather than just gathering relevant information.
   \\[10pt]
-  \textbf{Question Answering (QA) system} is a specialized form of Information Retrieval. QA is in itself intersection of \textbf{Natural Language Processing, Information Retrieval, Information Extraction, Machine Learning, Knowledge Representation, Logic and Inference, Sematic Search}.  \textbf{QA Systems} are needed everywhere, be it medical science, learning systems for students, personal assistants. 
+  \textbf{Question Answering (QA) system} is a specialized form of Information Retrieval. QA lies at the intersection of \textbf{Natural Language Processing, Information Retrieval, Information Extraction, Machine Learning, Knowledge Representation, Logic and Inference, Sematic Search}.  \textbf{QA Systems} are needed everywhere, be it medical science, learning systems for students and personal assistants. 
   \\[10pt]
-  Here in this project we are more concerned in answering quesions for Reading Comprehension tests where domain of search is defined. 
+  Here, in this project, we are more concerned in answering quesions for Reading Comprehension tests where domain of search space is defined. 
  }
 \column{0.33}
- \block{AFTERTHOUGHTS}{
+ \block[bodywidthscale=1.05,bodyinnersep=4em]{AFTERTHOUGHTS}{
 \begin{itemize}
 \\[-0.5in]
 \item[] \textbf{Things went well}
     \begin{enumerate}
-    \item Question classifier to determine answer type as HUM:ind, HUM:gr, LOC:city, NUM:date, NUM:money is the key to enhance performance.
-    \item Using regex to find number, date and currency such as 'dd[??] [Month]' in date, 1800-2100 for Years and \$100.0 or \$ 0.50 for currency has helped.
-    \item The idea of measure of the length of the shortest path in the semantic ontology between two words. Also extracting verb from question and finding matching verbs  or its synset has improved system performance
+    \item Question classifier to determine answer type as HUM:ind, HUM:gr, LOC:city, NUM:date, NUM:money etc. is the key to enhance performance.\\[-0.3in]
+    \item Using regex to find number, date and currency such as 'dd[st|nd|rd|th] [Month]' in date, 1800-2100 for years and \$100.0 or \$ 0.50 for currency has helped.\\[-0.2in]
+    \item The idea of measuring the length of the shortest path in the semantic ontology between two words has been beneficial. Also, extracting verb from question and finding matching verbs or its synset has improved system performance. \\[-0.3in]
     \end{enumerate}
 \end{itemize}
 \begin{itemize}
-\item[] \textbf{Things could have been better}
+\item[] \textbf{Scope for improvement}
     \begin{enumerate}
-    \item Coreference resolution has little effect on my QA system, might need to revamp scoring function to see its effect.
+    \item Coreference resolution has little effect on my QA system, though it might be required to revamp scoring function to observe its impact. \\[-0.5in]
     \end{enumerate}
 \end{itemize}
 
@@ -154,7 +154,7 @@ Since \textbf{Reading Comprehension Test} has defined domain of search space, ou
 \note[targetoffsetx=9.2cm, targetoffsety=-6.5cm, angle=-90, width=0.35\textwidth, rotate=1]
 {
 \emph{Did you know?} \\
-In 2000 Semantic and Rule based QA system gained much attention; Researchers around the globe gathered and contributed to form a QA research roadmap; Our instructor \textbf{E. Riloff} has also made contribution in it.
+In 2000, Semantic and Rule based QA system gained a lot attention; researchers around the globe gathered and contributed to form a QA research roadmap. Our instructor \textbf{E. Riloff} has also made contribution in it.
 }
 
  % SECOND column
@@ -169,7 +169,7 @@ In 2000 Semantic and Rule based QA system gained much attention; Researchers aro
 
 \note[targetoffsetx=-0.2cm, targetoffsety=15cm, angle=-10, width=0.3\textwidth, rotate=-4]
 {\emph{Note:}\\
-  \textbf{Preprocessing module} is not shown in diagram. In preprocessing step the passage is passed through an \textbf{Anaphora Resolution system}(i.e. \textbf{BART-Beautiful Anaphore resolution Toolkit)} ) to resolute pronomial coreferences; with a hypothesis that it will help answering module to find answer.
+  \textbf{Preprocessing module} is not shown in diagram. In preprocessing step, the passage is passed through an \textbf{Anaphora Resolution system}(i.e. \textbf{BART-Beautiful Anaphore resolution Toolkit)} ) to resolute pronominal coreferences with a hypothesis, that will facilitate Answering Module to find answer.
 }
 
 \column{0.3}
@@ -179,25 +179,25 @@ In 2000 Semantic and Rule based QA system gained much attention; Researchers aro
 \item Question Classifiers is based on the Paper \textbf{Learning Question Classifiers: The Role of Semantic Information}, Xin Li, Dan Roth, \emph{Natural Language Engineering}, 2004
 \item Some concept of Sentence Similarity Module is borrowed from  Paper \textbf{Sentence Similarity Based on Semantic Nets and Corpus Statistics} by Yuhua Li, David McLean et. al.
 \item Coreference Module: \textbf{BART Beautiful Anaphora Resolution Tool} by Massimo Poesio et.al.
-\item Ofcourse worth to mention our NLP friend \textbf{NLTK} and \textbf{Scipy} 
+\item Worth mentioning our NLP friend \textbf{NLTK} and \textbf{Scipy} 
 \end{enumerate}
 }
-\note[targetoffsetx=-1.2cm, targetoffsety=4.2cm, angle=30, width=0.115\textwidth, rotate=4]
-{\emph{Did you know?}\\ First \textbf{Neural Network} based Factoid QA on passage was published last year, 2014, by M. Iyyer of UMD.
+\note[targetoffsetx=-0cm, targetoffsety=3cm, angle=30, width=0.115\textwidth, rotate=4]
+{\emph{Did you know?}\\ First \textbf{Neural Network} based Factoid QA on passage was published last year (2014), by M. Iyyer of UMD.
 }
 
 \note[targetoffsetx=-8.2cm, targetoffsety=-2.2cm, angle=-95, width=0.10\textwidth, rotate=-10]
 {
-\emph{Did you know?}\\ \textbf{SIRI} was primarily a QA project started in \textbf{2003} funded by \textbf{DARPA} till 2008 and everyone came to know about it after being integrated with apple \textbf{iOS4} in 2010.
+\emph{Did you know?}\\ \textbf{SIRI} was primarily a QA project started in \textbf{2003} funded by \textbf{DARPA} till 2008, though it became public knowledge only after being integrated with \textbf{Apple iOS4} in 2010.
 }
 
-\block[titleright, bodywidthscale=.8, bodyinnersep=-4em]{ $f(x)$ SCORING }{
+\block[titleright, bodywidthscale=.8, bodyinnersep=2em]{ SCORING $f(x)$  }{
 \begin{minipage}[t]{1in}
 \end{minipage}
 \hfill
 \begin{minipage}[t]{5in}
  1. Rule Based scores \textbf{ $0 \leq f_1(x) \leq 1 $} \\
- 2. \textbf{0.25} for best matching, \textbf{0.15} for probable \\ \hspace*{0.15in} \textbf{0.05} for may be answers.\\
+ 2. \textbf{0.25} for best matching, \textbf{0.15} for probable and \textbf{0.05} for 'may be' answers.\\
  3. Scoring function of Similarity Module \\ 
  \hspace*{0.15in} \textbf{$0 \leq f_2(x) \leq 1 $} \\
 \end{minipage}
@@ -234,3 +234,4 @@ In 2000 Semantic and Rule based QA system gained much attention; Researchers aro
 \endinput
 %%
 %% End of file `tikzposter-template.tex'.
+
