@@ -1,0 +1,411 @@
+%%
+%% This is file `tikzposter-template.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% tikzposter.dtx  (with options: `tikzposter-template.tex')
+%% 
+%% This is a generated file.
+%% 
+%% Copyright (C) 2014 by Pascal Richter, Elena Botoeva, Richard Barnard, and Dirk Surmann
+%% 
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 2.0 of this license or (at your option) any later
+%% version. The latest version of this license is in:
+%% 
+%% http://www.latex-project.org/lppl.txt
+%% 
+%% and version 2.0 or later is part of all distributions of
+%% LaTeX version 2013/12/01 or later.
+%% 
+
+
+
+
+
+\documentclass[20pt, a1paper, landscape, margin=0mm, innermargin=15mm,
+blockverticalspace=15mm, colspace=15mm, subcolspace=8mm]{tikzposter}
+% \documentclass{tikzposter} %Options for format can be included here
+% \setcolumnnumber{3}
+ % Title, Author, Institute
+\title{\textbf{News Clustering and Event Detection}, Data Mining, Spring 2016}
+\author{\textbf{Debjyoti Paul}, deb@cs.utah.edu, \textbf{Yogesh Mishra}, ymishra@cs.utah.edu }
+\institute{\textbf{School of Computing, University of Utah}}
+\titlegraphic{
+\includegraphics[width=0.13\textwidth]{figures/ulogo.png}
+}
+
+\usepackage{enumitem}
+\usepackage{url}
+\usepackage{tabularx}
+\usepackage{mathtools}
+\usepackage{blindtext}
+
+\usepackage{contour}
+% \usepackage[T1]{fontenc}
+%%%%%%%%% Awesome tex stack exchange answer 
+% http://tex.stackexchange.com/questions/167521/tikz-poster-aligning-titlegraphic-to-the-right-of-the-title
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeatletter
+\renewcommand\TP@maketitle{%
+   \centering
+         \tikz[remember picture,overlay]\node[scale=0.8,anchor=east,xshift=0.46\linewidth,yshift=2.8cm,inner sep=0pt] {%
+       \@titlegraphic
+    };
+   \begin{minipage}[b]{0.8\linewidth}
+        \centering
+        \color{titlefgcolor}
+        {\bfseries \Huge \sc \@title \par}
+        \vspace*{1em}
+        {\huge \@author \par}
+        \vspace*{1em}
+        {\LARGE \@institute}
+    \end{minipage}%
+}
+\makeatother
+
+
+%Choose Layout
+\usetheme{Basic}
+% \usecolorpalette{PurpleGrayBlue}
+\usecolorstyle{utahcolor}
+\usebackgroundstyle{BottomVerticalGradation}
+
+\usetitlestyle{Envelope}
+
+\begin{document}
+
+\maketitle
+\begin{columns}
+\column{0.67}
+%\note[targetoffsetx=3.2cm, targetoffsety=-10cm, angle=20, rotate=12]
+%{
+%Since \textbf{Reading Comprehension Test} has a defined domain of search space, our QA system does not require \textbf{Document Retrieval module}. Our focus is mainly on building an efficient \textbf{Answer Processing} module.
+%}
+
+\begin{subcolumns}
+
+\subcolumn{0.52}
+\block[bodywidthscale=1]{Introduction}{
+%   This projects finds events from news articles, categorize them, extracts relevant information about event. Pure clustering approach is not sufficient to extract events out of huge corpus of news articles.
+%   \\[10pt]
+  \textbf{Problem Statement} 
+  Given a large corpus of mixed heterogeneous articles.  Find very similar articles that represents \emph{Event}s and define their \emph{Topic} and \emph{Reachability}. 
+  \begin{center}  
+  \textbf{ Corpus $C=\{d_1,d_2,d_3,\ldots,d_n\}$ \\
+  Temporal property $T=\{t_{d_1},t_{d_2},t_{d_3}, \ldots,t_{d_n}\}$. } 
+  \end{center}
+  \vspace{0.2cm}
+\textbf{\emph{Event : }} An Event $E$ is described as a set of very similar documents   having a near/close temporal property and describing same context.\\
+$$E=\{d_1,d_2,...d_m\}, ~~ \forall i,j ~~ \texttt{sim}(d_i,d_j) \geq \tau
+,~~ \forall i,j ~~ | t_{d_i} - t_{d_j}| \leq \nu $$ 
+\hfill where $\tau$ is similarity threshold and $\nu$ is temporal locality constant usually in days.\\
+\textbf{\emph{Event Reachability : }} Reachability of an event is the spatial region over which the event has its impact. \\
+When an Event $E$ has impact on locations $L=\{l_1,l_2,l_3,\ldots,l_p\}$ the convex hull of $L$ will be defined as the reachability of the Event.  
+ }
+
+
+
+
+
+
+
+% }
+
+
+\subcolumn{0.5}
+%  \block[bodywidthscale=1.05,bodyinnersep=4em]{Dataset}{
+\block[bodywidthscale=1.02]{Dataset}{
+         % \textbf{How we obtained our data?}\\
+%  Generic Crawler 12 main Indian news sites. 
+%  We developed a crawler to collect news articles, clean it and store them into a database for faster/easier access. Features of Dataset and Crawler Module:\\
+
+%\begin{enumerate}[noitemsep,nolistsep]
+ \textbf{Generic Crawler} framework to crawl articles from news sites. Extensible and customized storage support.\\
+ \textbf{Technologies:} \textit{Python Scrapy}, \textit{Splash} bundled with \textit{docker}\\
+ \textbf{Data Cleansing:} Discard malformed data and store articles in proper json schema.\\
+ \textbf{Dataset:} \textbf{5 months} (Nov 2015 - Mar 2016), \textbf{12} news sites, \textbf{5,24,000+} articles, \textbf{2.4 GB} of articles, \textbf{3000 articles} per day. \\
+%\end{enumerate}
+}
+
+{ % NEW NOTE STYLE
+\colorlet{notebgcolor}{white!10!white}
+
+\note[targetoffsetx=2.8cm, targetoffsety=-1.2cm, angle=-105, width=0.28\textwidth, rotate=0]
+{
+\textbf{News Sites Crawled:}\\ 
+1. The Better India \quad ~ 2. The Hindu \quad ~ 3. Times of India \\
+\quad ~~~~~ 4. Economic Times  
+\quad  5. Financial Express \quad 6.The Statesman  \\
+\quad 7. Business Standard \quad 8. Assam Tribune
+\quad 9. NDTV  \\
+ \quad~~~~~~~~~ 10. Daily Excelsior \quad ~~ 11. First Post \quad ~~~~ 12. India Today
+}
+
+}
+
+\end{subcolumns}
+
+
+
+\begin{subcolumns}
+\subcolumn{0.42}
+
+\block[titleoffsety=1.8cm,bodyoffsety=1.6cm]{Our Methods}{
+        \vspace{-1.8cm}
+        \textbf{\Large{Phrase LDA Topic Modeling}} %\textit{(Properties)} \\
+\\
+Discovers \textbf{fine grained topics} from titles, focus of articles.\\ 
+\textbf{(i) Frequency:} \\Relays topic information.\\
+\textbf{(ii) Collocation:}\\ ``Strong tea'' vs ``Powerful tea'' $\rightarrow$ statistical biasedness. \\
+\textbf{(iii) Completeness:}\\ Subset phrases should comply with (i) and (ii) \\
+\vspace{1cm}\\
+\textbf{\Large{Findings}}\\
+Phrase contributing to a topic changes with time. \\
+Phrase LDA over two months data decreases effectiveness of phrase contributing to a topic and adds noise. \\
+Phrase LDA on one month of data produces optimal results. \\
+50-75 fine grained topics every run. \\
+}
+{ % NEW NOTE STYLE
+\colorlet{notebgcolor}{white!10!white}
+
+%\note[targetoffsetx=-3cm, targetoffsety=-3.5cm, angle=-20, width=0.25\textwidth, rotate=0, linewidth=0pt, connection]
+%{
+%                \textbf{Fine Grained Topic  $\rightarrow$  Broad Categorization}\\
+%                \begin{minipage}[t]{0.22\textwidth}
+%                        \flushright
+%                (Mutually exclusive categories)
+%                \end{minipage}
+%                \\
+%\textit{E.g.} Finance, Security and Terrorism, Sports, Entertainment etc.
+%}
+
+%\note[targetoffsetx=21cm, targetoffsety=-0.3cm, angle=0, width=0.35\textwidth, rotate=0, roundedcorners=5, linewidth=0pt]
+%{
+%
+%        \begin{center}
+%%\begin{table}[H]
+%%\label{broad_category}
+%        \textbf{Temporal span}~~~~~ $|$ ~~~~~~~~~\textbf{Sliding Window} ~~~~~~~~$|$~~~~ \textbf{ Intra-Category } \\
+%\begin{tabularx}{0.32\textwidth}{XXX} 
+%        % \textbf{Temporal span}~~ &$|$ ~~\textbf{Sliding Window} ~~&$|$~~ \textbf{ Intra-Category } \\
+%~~~~An event usually has &  ~~~~~~ Articles can merge to  &  ~~~~~~~~~~~~Related events  \\
+%~~~3 days of temporal locality & ~~~previously detected events  &  ~~~~~~~~~under one category 
+%\end{tabularx}
+%%\end{table}
+%\end{center}
+%
+%}
+
+
+
+}
+
+\subcolumn{0.65}
+\block{}{
+\vspace{-4cm}
+\textbf{\Large{Document Representation}}  \\
+        Modified TF-IDF sparse vector \\
+        \vspace{-3cm}
+\begin{tikzfigure}[]
+
+\label{fig:fig3}
+\includegraphics[width=0.30\textwidth]{figures/document_rep.png}
+\end{tikzfigure}
+
+\normalsize{
+% \vspace{3.5cm}
+\begin{minipage}[t]{\0.38\textwidth}
+        \begin{center}
+        \hspace{-3cm}
+                ~~\textsc{\Large{Temporal span}}~~\quad $|$\quad ~~~~ \textsc{\Large{Sliding Window}} ~~~~$|$~~\quad \textsc{\Large{ Intra-Category }} \\
+        \hspace{-6cm} An event usually has ~~~~~~~~~~~~ \quad  ~~~ Articles can merge to  \quad  ~~~~~~~~~~~~~~~~~~Related events  \\
+        \hspace{-4.8cm} 3 days of temporal locality ~~~\quad ~~~~~~~previously detected events  \quad  ~~~~~~~~~~~under one category 
+        \end{center}
+\end{minipage}
+}
+
+\vspace{1.8cm}
+
+\normalsize{
+\begin{minipage}[t]{0.25\textwidth}
+\end{minipage}
+\begin{minipage}[t]{0.34\textwidth}
+  \flushright
+  \textbf{\Large{Event Detection}}  \\
+   % Intra-\textit{Broad Category} clustering \\
+   \textbf{Hierarchical clustering:} Applied average linkage clustering \\
+   \textbf{Graph clustering:} Finding strongly-connected subgraphs  \\
+   \flushleft
+   \hspace{5cm}
+   Graph $G$ created with similarity value of documents.\\ 
+   \hspace{5cm}
+   A threshold of $\tau$ applied and pruned edges less than $\tau$.\\
+   \hspace{5cm}
+   Applied strongly connected subgraph algorithm.\\
+   \begin{center}
+    \end{center}
+\end{minipage}
+
+\hspace{-1.6cm}
+   \textbf{ 
+   \large{$\alpha, \beta, \gamma$- document representation with Graph clustering worked best.}}
+}
+}
+%
+% { % NEW NOTE STYLE
+% \colorlet{notebgcolor}{white!10!white}
+%
+%
+%
+%
+% %\note[targetoffsetx=-1.2cm, targetoffsety=-15.2cm, angle=90, width=0.25\textwidth, rotate=0, roundedcorners=0, linewidth=0pt]
+% %{
+% %
+% %\textbf{Document Representation:}\\
+% %\begin{tikzfigure}[ Articles to Event aggregation ]
+% %\label{fig:fig2}
+% %\includegraphics[width=0.22\textwidth]{figures/event.png}
+% %\end{tikzfigure}
+% %
+% %
+% %}
+% %
+%
+%
+%
+%
+%
+%
+% }
+
+%
+%\note[targetoffsetx=-11.2cm, targetoffsety=-10.2cm, angle=-135, width=0.45\textwidth, rotate=0]
+%{
+%\textbf{\emph{Event Reachability : }} Reachability of an event is the spatial region over which the event has its impact. \\
+%When an Event $E$ has impact on locations $L=\{l_1,l_2,l_3,\ldots,l_p\}$ the convex hull of $L$ will be defined as the reachability of the Event.  
+%}
+
+\end{subcolumns}
+ 
+
+\column{0.33}
+\block{Architecture}{
+\begin{tikzfigure}[Basic Event Detection Architecture ]
+\label{fig:fig1}
+\includegraphics[width=0.30\textwidth,height=12cm]{figures/EventDetection.png}
+\end{tikzfigure}
+
+%\vspace{-1cm}
+%
+%\begin{tikzfigure}[ Articles to Event aggregation ]
+%\label{fig:fig2}
+%\includegraphics[width=0.22\textwidth]{figures/event.png}
+%\end{tikzfigure}
+
+
+%\vspace{1cm}
+%\textbf{\Large{Modules:}}
+%\noindent
+%\begin{itemize}
+%\item[] \textbf{Crawler: } Crawls 12 News sites and sanitizes data with proper structure. 
+%\item[] \textbf{News Article Database: } Elasticsearch Cluster running on  \texttt{db03.cs.utah.edu}
+%\item[] \textbf{Topic Modeling: } Using Phrase LDA to detect Fine grained Categories
+%\item[] \textbf{Broad Categorization: } Mapping Fine Grained categories to mutual exclusive Broad categories  
+%\item[] \textbf{Clustering \& Event Detection: } Experimentation with different similarity measure techniques to cluster very similar articles with different approaches, e.g. Graph Algorithms and $k$-Means
+%\end{itemize}
+%
+
+}
+
+
+
+\note[targetoffsetx=0cm, targetoffsety=-9.5cm, angle=-90, width=0.28\textwidth, rotate=0,]
+{
+
+\textbf{A Similarity Measures for Text Classification and Clustering} %\cite{6420834} 
+\\
+$$\texttt{Sim}(x,y) = \frac{F(x,y) +\lambda}{1 + \lambda}$$
+$$F(x,y)= \frac{\sum _{j=}^m N^* (x_j,y_j)}{\sum _{j=}^m N_{\cup} (x_j,y_j)} $$
+\[
+    N^*(x,y)= 
+\begin{dcases}
+    0.5 \Big(1+ exp \{- \big(\frac{x_j-y_j}{\sigma_j}\big)^2\}\Big),& \text{if } x_jy_j > 0\\
+    0,              & \text{if } x_j=0 \text{ and } y_j=0\\
+    -\lambda       & \text{otherwise}
+\end{dcases}
+\]
+\[
+    N_{\cup}(x,y)= 
+\begin{dcases}
+    0,&  \text{if } x_j=0 \text{ or } y_j=0\\
+    1      & \text{otherwise}
+\end{dcases}
+\]
+\hfill where $\lambda$ is any constant with $0< \lambda \leq 1 $ and $\sigma_j$ is the variance of word $j$ in the corpus. \\
+
+
+
+}
+
+
+
+
+
+
+
+
+{ % NEW NOTE STYLE
+ \colorlet{notebgcolor}{white!10!white}
+\note[targetoffsetx=0cm, targetoffsety=-23.2cm, angle=-90, width=0.33\textwidth, rotate=0,roundedcorners=0]{
+\textbf{Citations:} \textit{(Detailed citations in report)}
+\begin{enumerate}[noitemsep,nolistsep]
+        \item \textit{El. Kishky}, Scalable topical phrase miningfrom text corpora.
+        \item \textit{Y. S. Lin, et.al.} A similarity measure for text classification and clustering.
+        \item \textit{Kumaran. G, et.al}, Text classification and named entities for new event detection.
+        \item \textit{Jiaul H. Paik}, A novel tf-idf weighting scheme for effective ranking.
+        \item \textit{Alfaro C, et.al}, A  multi-stage method for content classification and opinion mining on weblog comments.
+\end{enumerate}
+
+}
+
+}
+
+
+
+\end{columns}
+
+
+%%%%%%%%% Suggestion from 
+% http://tex.stackexchange.com/questions/233854/tikz-poster-block-title-colours
+%%%%%%%%%%
+{
+\colorlet{notebgcolor}{colorOne!10!white}
+
+}
+
+\end{document}
+
+
+% MINIPAGE EXAMPLE
+%\begin{minipage}[t]{1in}
+%\end{minipage}
+%\hfill
+%\begin{minipage}[t]{5in}
+% 1. Rule Based scores \textbf{ $0 \leq f_1(x) \leq 1 $} \\
+% 2. \textbf{0.25} for best matching, \textbf{0.15} for probable and \textbf{0.05} for 'may be' answers.\\
+% 3. Scoring function of Similarity Module \\ 
+% \hspace*{0.15in} \textbf{$0 \leq f_2(x) \leq 1 $} \\
+%\end{minipage}
+%\hspace*{1in} 
+%4. Hypernyms matched words score is less than the synsets matched words $f_2(hypernym) < f_2(synset)$ \\
+
+
+\endinput
+%%
+%% End of file `tikzposter-template.tex'.
+
+
